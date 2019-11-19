@@ -1,0 +1,114 @@
+@media screen and (max-width:320px){
+    .wrapper{
+        width:100%;
+    }
+}
+
+.container{
+    margin-top:50px;
+}
+.wrapper{
+    width:300px;
+    margin: 0 auto;
+    text-align: left;
+    border:1.5px solid#777;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:100px;
+    box-shadow:4px 4px 12px 4px rgba(20%,20%,40%,0.15);
+}
+
+.section{
+    text-align:bottom;
+}
+
+#current-time{
+    color:grey;
+}
+
+.title{
+    display: inline-block;
+    margin:12px 0px;
+    font-size: 35px;
+}
+
+.fa-list:before {
+    margin-left: 50px;
+}
+
+.fa-edit, .fa-trash-alt {
+    font-size: 20px;
+}
+
+
+.text{
+    line-height:26px;
+    border-style: solid;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+}
+
+.btn{
+    line-height:20px;
+    margin-left:10px;
+    padding: 3px 23px;
+}
+
+.list__group{ 
+    padding: 0px;
+    margin:10px 0px;
+    list-style: none;
+}
+
+.list__group > li{
+    padding:10px 0px;
+    border-bottom: 1px solid;
+}
+
+.list__group__item .content{
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+
+.list__group__item.active  .content{
+    text-decoration: line-through;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list__group__item.active{
+    background-color:rgba(0,0,0,0.4);
+    opacity: 0.6;
+}
+
+/* .list__group__item.active , .btn-edit , .delete{
+    text-decoration: underline;
+} */
+
+
+/* .delete{
+    margin-left: 5px;
+} */
+
+/* //這邊真的太高招了 */
+.edit .task_input{
+    width:130px;
+    display:inline-block;
+} 
+.task_input{
+    display:none;
+}
+
+.action{
+    display:none;
+    margin-right:10px;
+}
+
+.list__group__item:hover .action{
+    display:block;
+}
