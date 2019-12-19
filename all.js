@@ -3,7 +3,7 @@
 const baseUrl = './api/api.php';
 // const baseUrl = 'fan630.com.tw/todo/api/api.php';
 
-const time = () => {
+const time = function () {
   const d = new Date();
   const month = d.getMonth() + 1;
   const day = d.getDate();
@@ -11,9 +11,7 @@ const time = () => {
     day < 10 ? '0' : ''}${day}`;
 
   $('#current-time').html(output);
-};
-
-time();
+}();
 
 function escapeHtml(str) {
   return str
@@ -50,6 +48,33 @@ function render() {
                                 </div>
                             </li>`),
         );
+        //const lists = Array.from(document.querySelectorAll('.list__group__item'))
+        //lists.forEach(list => list.addEventListener('click', handleClick))
+
+        //let firstCheck = null
+
+        //function handleClick(e){
+          //if(!this.classList.contains('active')){
+            //firstCheck = lists.indexOf(this)
+             //console.log(firstCheck)
+             //if(e.shiftKey && firstCheck !== null){
+                 //let secondCheck = lists.indexOf(this)
+               //console.log(firstCheck, secondCheck)
+               //console.log(firstCheck)
+               //console.log(secondCheck)
+
+              //  lists.slice(
+              //     Math.min(firstCheck, secondCheck), 
+              //     Math.max(firstCheck, secondCheck)
+              //  ).forEach(input => (input.classList.add('active')))
+             //}
+            //console.log(firstCheck)// 這可以標示出來
+          //}else{
+            //firstCheck = null
+          //}
+        //}
+
+
       } else {
         alert('請輸入內容!');
       }
@@ -234,3 +259,76 @@ $(document).ready(() => {
   // 刪除留言
   $('.list__group').on('click', '.delete', deleteItem);
 });
+
+// JS
+
+
+const APPID = '79c644e3ee78cc550e597d1cbf4b5e08'
+const cityID = '1668341'
+const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&APPID=${APPID}`
+
+// let weatherData = []
+
+// fetch(url)
+//   .then(res => res.json())
+//   .then(data => (weatherData = data))
+
+//串天氣api
+const request = new XMLHttpRequest()
+request.onload = function(){
+  if(request.status >= 200 && request.status < 400){    const weatherData = JSON.parse(request.responseText)
+    console.log(weatherData)
+    const weather = document.querySelector('.weather')
+
+
+    function sunTime(x){
+      var date = new Date( x* 1000);
+      // Hours part from the timestamp
+      var hours = date.getHours();
+      // Minutes part from the timestamp
+      var minutes = "0" + date.getMinutes();
+      // Seconds part from the timestamp
+      var seconds = "0" + date.getSeconds();
+
+      // Will display time in 10:30:23 format
+      return formattedTime = hours + ':' + minutes.substr(-2)
+    }
+
+    function situation(y){
+       if(y.indexOf('oud') >=0){
+         document.body.style.backgroundColor = '#F5F5F5'
+         return '<i class="fas fa-cloud"></i>'
+       } else if (y.indexOf('un') >= 0){
+         document.body.style.backgroundColor = '#E6B800'
+         return '<i class="far fa-sun"></i>'
+       } else if (y.indexOf('ain') >= 0) {
+         document.body.style.backgroundColor = 'Lightblue'
+         return '<i class="fas fa-cloud-rain"></i>'
+       }
+    }
+   
+    weather.innerHTML = `
+              <div class="location">${weatherData.name}</div>
+              <div id="current-time" class="mb-1"></div>
+               <div class="desc">天氣概況  ${situation(weatherData.weather[0].main)}</div>
+              <div class="temp">溫度 ${Math.round((weatherData.main.temp - 273.15))}&deg;C</div>
+              <div class="feellike">體感溫度 ${Math.round((weatherData.main.feels_like - 273.15))}&deg;C</div>
+              <div class="sunrise">日出時間 ${sunTime(weatherData.sys.sunrise)}</div>
+              <div class="sunrise">日落時間 ${sunTime(weatherData.sys.sunset)}</div>
+    `
+  }
+}
+
+//測試天氣...
+// <div class="desc">天氣概況 ${situation('sun')}</div>
+
+request.open('GET', url, true)
+request.send()
+
+
+
+
+
+
+
+
