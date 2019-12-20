@@ -297,12 +297,15 @@ request.onload = function(){
     function situation(y){
        if(y.indexOf('oud') >=0){
          document.body.style.backgroundColor = '#F5F5F5'
-         return '<i class="fas fa-cloud"></i>'
+         return '<i class="fas fa-cloud-sun"></i>'
        } else if (y.indexOf('un') >= 0){
          document.body.style.backgroundColor = '#E6B800'
          return '<i class="far fa-sun"></i>'
-       } else if (y.indexOf('ain') >= 0) {
+       } else if (y.indexOf('zzl') >= 0) {
          document.body.style.backgroundColor = 'Lightblue'
+         return '<i class="fas fa-cloud-rain"></i>'
+       } else if (y.indexOf('ai') >= 0){
+         document.body.style.backgroundColor = '#00BBFF'
          return '<i class="fas fa-cloud-rain"></i>'
        }
     }
@@ -310,7 +313,7 @@ request.onload = function(){
     weather.innerHTML = `
               <div class="location">${weatherData.name}</div>
               <div id="current-time" class="mb-1"></div>
-               <div class="desc">天氣概況  ${situation(weatherData.weather[0].main)}</div>
+              <div class="desc">天氣概況  ${situation(weatherData.weather[0].main)}</div>
               <div class="temp">溫度 ${Math.round((weatherData.main.temp - 273.15))}&deg;C</div>
               <div class="feellike">體感溫度 ${Math.round((weatherData.main.feels_like - 273.15))}&deg;C</div>
               <div class="sunrise">日出時間 ${sunTime(weatherData.sys.sunrise)}</div>
