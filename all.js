@@ -295,25 +295,46 @@ request.onload = function(){
     }
 
     function situation(y){
-       if(y.indexOf('oud') >=0){
-         document.body.style.backgroundColor = '#F5F5F5'
-         return '<i class="fas fa-cloud-sun"></i>'
-       } else if (y.indexOf('un') >= 0){
-         document.body.style.backgroundColor = '#E6B800'
-         return '<i class="far fa-sun"></i>'
-       } else if (y.indexOf('zzl') >= 0) {
-         document.body.style.backgroundColor = 'Lightblue'
-         return '<i class="fas fa-cloud-rain"></i>'
-       } else if (y.indexOf('ai') >= 0){
-         document.body.style.backgroundColor = '#00BBFF'
-         return '<i class="fas fa-cloud-rain"></i>'
-       }
+      let message = ""
+      switch (y) {
+        case 'Clouds':
+          document.body.style.backgroundColor = '#ECFFFF'
+          return message =  "多雲"
+          break;
+        case 'Drizzle':
+          document.body.style.backgroundColor = '#c3c3c3'
+          return message = "毛毛雨"
+          break;
+        case 'Thunderstorm':
+          document.body.style.backgroundColor = '#6C6C6C'
+          return message = "雷陣雨"
+          break;
+        case 'Rain':
+          document.body.style.backgroundColor = '#00CACA'
+          return message = "雨一直下"
+          break;
+        case 'Clear':
+          document.body.style.backgroundColor = '#FFFFAA'
+          return message = "情朗的天空"
+          break;
+        case 'Snow':
+          document.body.style.backgroundColor = '#FFFCEC'
+          return message = "雪"
+          break;
+        default:
+          document.body.style.backgroundColor = '#fff'
+          break;
+      }
     }
+
    
     weather.innerHTML = `
+              <img src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"/>
               <div class="location">${weatherData.name}</div>
               <div id="current-time" class="mb-1"></div>
-              <div class="desc">天氣概況  ${situation(weatherData.weather[0].main)}</div>
+              <div class="desc">天氣概況  
+                    ${situation(weatherData.weather[0].main)} 
+              </div>
               <div class="temp">溫度 ${Math.round((weatherData.main.temp - 273.15))}&deg;C</div>
               <div class="feellike">體感溫度 ${Math.round((weatherData.main.feels_like - 273.15))}&deg;C</div>
               <div class="sunrise">日出時間 ${sunTime(weatherData.sys.sunrise)}</div>

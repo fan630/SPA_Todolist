@@ -1,25 +1,40 @@
-@media screen and (max-width: 320px) {
-  .wrapper {
+@media screen and (max-width: 500px) {
+  .container {
     width: 100%;
+  }
+  .container .weather {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 14px;
+    line-height: 1;
+    word-break: keep-all;
+    margin: 10px 0;
+    border: 1px dotted #777;
+    margin-left: 5px;
+  }
+  .container .weather > * {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-right: 5px;
+    text-align: center;
   }
 }
 
 .container {
-  width: 800px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100vh;
+  padding-top: 50px;
   font-family: 'Noto Sans TC', sans-serif;
 }
 
 .container .weather {
+  float: left;
   border: 1.5px dotted #777;
   border-radius: 10px;
   padding: 10px;
@@ -27,6 +42,7 @@
 }
 
 .container .wrapper {
+  float: right;
   width: 450px;
   margin: 0 auto;
   text-align: left;
