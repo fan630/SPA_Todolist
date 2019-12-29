@@ -262,73 +262,74 @@ $(document).ready(() => {
 
 // JS
 
+;(function(){
+  const APPID = '79c644e3ee78cc550e597d1cbf4b5e08'
+  const cityID = '1668341'
+  const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&APPID=${APPID}`
 
-const APPID = '79c644e3ee78cc550e597d1cbf4b5e08'
-const cityID = '1668341'
-const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&APPID=${APPID}`
+  // let weatherData = []
 
-// let weatherData = []
+  // fetch(url)
+  //   .then(res => res.json())
+  //   .then(data => (weatherData = data))
 
-// fetch(url)
-//   .then(res => res.json())
-//   .then(data => (weatherData = data))
-
-//串天氣api
-const request = new XMLHttpRequest()
-request.onload = function(){
-  if(request.status >= 200 && request.status < 400){    const weatherData = JSON.parse(request.responseText)
-    console.log(weatherData)
-    const weather = document.querySelector('.weather')
+  //串天氣api
+  const request = new XMLHttpRequest()
+  request.onload = function () {
+    if (request.status >= 200 && request.status < 400) {
+      const weatherData = JSON.parse(request.responseText)
+      console.log(weatherData)
+      const info = document.querySelector('.info')
 
 
-    function sunTime(x){
-      var date = new Date( x* 1000);
-      // Hours part from the timestamp
-      var hours = date.getHours();
-      // Minutes part from the timestamp
-      var minutes = "0" + date.getMinutes();
-      // Seconds part from the timestamp
-      var seconds = "0" + date.getSeconds();
+      function sunTime(x) {
+        var date = new Date(x * 1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        // Seconds part from the timestamp
+        var seconds = "0" + date.getSeconds();
 
-      // Will display time in 10:30:23 format
-      return formattedTime = hours + ':' + minutes.substr(-2)
-    }
-
-    function situation(y){
-      let message = ""
-      switch (y) {
-        case 'Clouds':
-          document.body.style.backgroundColor = '#ECFFFF'
-          return message =  "多雲"
-          break;
-        case 'Drizzle':
-          document.body.style.backgroundColor = '#c3c3c3'
-          return message = "毛毛雨"
-          break;
-        case 'Thunderstorm':
-          document.body.style.backgroundColor = '#6C6C6C'
-          return message = "雷陣雨"
-          break;
-        case 'Rain':
-          document.body.style.backgroundColor = '#00CACA'
-          return message = "雨一直下"
-          break;
-        case 'Clear':
-          document.body.style.backgroundColor = '#FFFFAA'
-          return message = "情朗的天空"
-          break;
-        case 'Snow':
-          document.body.style.backgroundColor = '#FFFCEC'
-          return message = "雪"
-          break;
-        default:
-          document.body.style.backgroundColor = '#fff'
-          break;
+        // Will display time in 10:30:23 format
+        return formattedTime = hours + ':' + minutes.substr(-2)
       }
-    }
 
-   
-    weather.innerHTML = `
+      function situation(y) {
+        let message = ""
+        switch (y) {
+          case 'Clouds':
+            document.body.style.backgroundColor = '#ECFFFF'
+            return message = "多雲"
+            break;
+          case 'Drizzle':
+            document.body.style.backgroundColor = '#c3c3c3'
+            return message = "毛毛雨"
+            break;
+          case 'Thunderstorm':
+            document.body.style.backgroundColor = '#6C6C6C'
+            return message = "雷陣雨"
+            break;
+          case 'Rain':
+            document.body.style.backgroundColor = '#00CACA'
+            return message = "雨一直下"
+            break;
+          case 'Clear':
+            document.body.style.backgroundColor = '#FFFFAA'
+            return message = "情朗的天空"
+            break;
+          case 'Snow':
+            document.body.style.backgroundColor = '#FFFCEC'
+            return message = "雪"
+            break;
+          default:
+            document.body.style.backgroundColor = '#fff'
+            break;
+        }
+      }
+
+
+      info.innerHTML = `
               <img src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"/>
               <div class="location">${weatherData.name}</div>
               <div id="current-time" class="mb-1"></div>
@@ -340,14 +341,17 @@ request.onload = function(){
               <div class="sunrise">日出時間 ${sunTime(weatherData.sys.sunrise)}</div>
               <div class="sunrise">日落時間 ${sunTime(weatherData.sys.sunset)}</div>
     `
+    }
   }
-}
 
-//測試天氣...
-// <div class="desc">天氣概況 ${situation('sun')}</div>
+  //測試天氣...
+  // <div class="desc">天氣概況 ${situation('sun')}</div>
 
-request.open('GET', url, true)
-request.send()
+  request.open('GET', url, true)
+  request.send()
+})()
+
+
 
 
 

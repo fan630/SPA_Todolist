@@ -1,9 +1,11 @@
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 1024px) {
+  html, body {
+    height: 100%;
+  }
   .container {
     width: 100%;
-  }
-  .container .weather {
-    width: 100%;
+    height: 100vh;
+    overflow: hidden;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -13,115 +15,321 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 14px;
-    line-height: 1;
-    word-break: keep-all;
-    margin: 10px 0;
-    border: 1px dotted #777;
-    margin-left: 5px;
+    margin: 0 auto;
+    font-family: 'Noto Sans TC', sans-serif;
   }
-  .container .weather > * {
+  .container .weather {
+    border: 1.5px dotted #777;
+    border-radius: 10px;
+  }
+  .container .weather .info {
+    padding: 10px;
+    line-height: 2;
+  }
+  .container .weather .info > img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .container .wrapper {
+    margin: 20px;
+    border: 1.5px double #777;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+            box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+  }
+  .container .wrapper .content {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+  .container .wrapper .content .title {
+    display: inline-block;
+    margin: 12px 0px;
+    font-size: 35px;
+  }
+  .container .wrapper .content .section {
+    text-align: bottom;
+  }
+  .container .wrapper .content .section #current-time {
+    padding: 5px 0;
+    color: grey;
+  }
+  .container .wrapper .content .section .text {
+    width: 300px;
+    line-height: 2;
+    border-style: solid;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+  }
+  .container .wrapper .content .section .btn {
+    line-height: 20px;
+    margin-left: 10px;
+    padding: 3px 23px;
+  }
+  .container .wrapper .content .list__group {
+    padding: 0px;
+    margin: 10px 0px;
+    list-style: none;
+    margin-top: 10px;
+  }
+  .container .wrapper .content .list__group > li {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 0px;
+    width: 70%;
+    border-bottom: 1px solid;
+  }
+  .container .wrapper .content .list__group__item .content {
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item.active {
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0.6;
+  }
+  .container .wrapper .content .list__group__item .active .content {
+    text-decoration: line-through;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item:hover .action {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 415px) {
+  html, body {
+    height: 100%;
+  }
+  .container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0 auto;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .container .weather {
+    border: 1.5px dotted #777;
+    border-radius: 10px;
+  }
+  .container .weather .info {
+    padding: 10px;
+    line-height: 2;
+  }
+  .container .weather .info > img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .container .wrapper {
+    margin: 20px;
+    border: 1.5px double #777;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+            box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+  }
+  .container .wrapper .content {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+  .container .wrapper .content .title {
+    display: inline-block;
+    margin: 12px 0px;
+    font-size: 35px;
+  }
+  .container .wrapper .content .section {
+    text-align: bottom;
+  }
+  .container .wrapper .content .section #current-time {
+    padding: 5px 0;
+    color: grey;
+  }
+  .container .wrapper .content .section .text {
+    width: 130px;
+    line-height: 2;
+    border-style: solid;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+  }
+  .container .wrapper .content .section .btn {
+    line-height: 20px;
+    margin-left: 10px;
+    padding: 3px 23px;
+  }
+  .container .wrapper .content .list__group {
+    padding: 0px;
+    margin: 10px 0px;
+    list-style: none;
+    margin-top: 10px;
+  }
+  .container .wrapper .content .list__group > li {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 0px;
+    width: 400px;
+    border-bottom: 1px solid;
+  }
+  .container .wrapper .content .list__group__item .content {
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item.active {
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0.6;
+  }
+  .container .wrapper .content .list__group__item .active .content {
+    text-decoration: line-through;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item:hover .action {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .container {
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0 auto;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .container .weather {
+    margin-top: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 1.5px dotted #777;
+    border-radius: 10px;
+  }
+  .container .weather .info {
+    word-break: keep-all;
+    font-size: 16px;
+  }
+  .container .weather .info > * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    margin-right: 5px;
+    margin: 5px 0px;
     text-align: center;
   }
-}
-
-.container {
-  padding-top: 50px;
-  font-family: 'Noto Sans TC', sans-serif;
-}
-
-.container .weather {
-  float: left;
-  border: 1.5px dotted #777;
-  border-radius: 10px;
-  padding: 10px;
-  line-height: 2;
-}
-
-.container .wrapper {
-  float: right;
-  width: 450px;
-  margin: 0 auto;
-  text-align: left;
-  border: 1.5px double #777;
-  border-radius: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 20px;
-  -webkit-box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
-          box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
-}
-
-.container .wrapper .title {
-  display: inline-block;
-  margin: 12px 0px;
-  font-size: 35px;
-}
-
-.container .wrapper .section {
-  text-align: bottom;
-}
-
-.container .wrapper .section #current-time {
-  padding: 5px 0;
-  color: grey;
-}
-
-.container .wrapper .section .text {
-  width: 300px;
-  line-height: 2;
-  border-style: solid;
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
-}
-
-.container .wrapper .section .btn {
-  line-height: 20px;
-  margin-left: 10px;
-  padding: 3px 23px;
-}
-
-.container .wrapper .list__group {
-  padding: 0px;
-  margin: 10px 0px;
-  list-style: none;
-  margin-top: 10px;
-}
-
-.container .wrapper .list__group > li {
-  font-size: 16px;
-  line-height: 1.5;
-  padding: 10px 0px;
-  width: 400px;
-  border-bottom: 1px solid;
-}
-
-.container .wrapper .list__group__item .content {
-  overflow: hidden;
-  white-space: wrap;
-  text-overflow: ellipsis;
-}
-
-.container .wrapper .list__group__item.active {
-  background-color: rgba(0, 0, 0, 0.4);
-  opacity: 0.6;
-}
-
-.container .wrapper .list__group__item .active .content {
-  text-decoration: line-through;
-  font-style: italic;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.container .wrapper .list__group__item:hover .action {
-  display: block;
+  .container .weather .info > img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .container .wrapper {
+    margin: 20px;
+    border: 1.5px double #777;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+            box-shadow: 4px 4px 12px 4px rgba(51, 51, 102, 0.15);
+  }
+  .container .wrapper .content {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+  .container .wrapper .content .title {
+    display: inline-block;
+    margin: 12px 0px;
+    font-size: 35px;
+  }
+  .container .wrapper .content .section {
+    text-align: bottom;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  .container .wrapper .content .section #current-time {
+    padding: 5px 0;
+    color: grey;
+  }
+  .container .wrapper .content .section .text {
+    width: 100%;
+    line-height: 2;
+    border-style: solid;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+  }
+  .container .wrapper .content .section .btn {
+    line-height: 20px;
+    margin-left: 10px;
+    padding: 3px 23px;
+  }
+  .container .wrapper .content .list__group {
+    padding: 0px;
+    margin: 10px 0px;
+    list-style: none;
+    margin-top: 10px;
+  }
+  .container .wrapper .content .list__group > li {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 0px;
+    width: 90%;
+    border-bottom: 1px solid;
+  }
+  .container .wrapper .content .list__group__item .content {
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item.active {
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0.6;
+  }
+  .container .wrapper .content .list__group__item .active .content {
+    text-decoration: line-through;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .container .wrapper .content .list__group__item:hover .action {
+    display: block;
+  }
 }
 
 .edit .task_input {
