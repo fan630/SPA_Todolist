@@ -2,8 +2,8 @@
 <?php
     //資料庫連線
     $servername = 'localhost';
-    $username = 'pmauser';
-    $password = 'norriswu266';
+    $username = 'root';
+    $password = '';
     $dbname = 'todo';
 
     //php提供的語法,成功連線的話是不會輸出錯誤訊息

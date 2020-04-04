@@ -36,7 +36,7 @@ function render() {
         $('.text').val('');
         $('.list__group').empty();
         $('.list__group').append(
-          list.map(({ id, todo, state }) => `<li data-id= ${id} class= "d-flex list__group__item ${Number(state) ? 'active' : ''} " >
+          list.map(({ id, todo, state }) => `<li data-id= ${id} class= "d-flex list__group__item list-group-item list-group-item-action ${Number(state) ? 'active' : ''} " >
                                 <div class="form__check mr-auto">
                                     <input type="checkbox" class="form__check__input" ${Number(state) ? 'checked' : ''}>
                                         <span class="content">${escapeHtml(todo)}</span>
@@ -48,33 +48,6 @@ function render() {
                                 </div>
                             </li>`),
         );
-        //const lists = Array.from(document.querySelectorAll('.list__group__item'))
-        //lists.forEach(list => list.addEventListener('click', handleClick))
-
-        //let firstCheck = null
-
-        //function handleClick(e){
-          //if(!this.classList.contains('active')){
-            //firstCheck = lists.indexOf(this)
-             //console.log(firstCheck)
-             //if(e.shiftKey && firstCheck !== null){
-                 //let secondCheck = lists.indexOf(this)
-               //console.log(firstCheck, secondCheck)
-               //console.log(firstCheck)
-               //console.log(secondCheck)
-
-              //  lists.slice(
-              //     Math.min(firstCheck, secondCheck), 
-              //     Math.max(firstCheck, secondCheck)
-              //  ).forEach(input => (input.classList.add('active')))
-             //}
-            //console.log(firstCheck)// 這可以標示出來
-          //}else{
-            //firstCheck = null
-          //}
-        //}
-
-
       } else {
         alert('請輸入內容!');
       }
@@ -177,7 +150,6 @@ $(document).ready(() => {
   // 新增留言keydown
   $('.text').keydown((e) => {
     const dataInputkey = $('.text').val();
-
     if (dataInputkey.length === 0) return;
 
     if (e.keyCode === 13) {
@@ -241,7 +213,6 @@ $(document).ready(() => {
   });
 
   // 更改留言keydown事件
-
   $('.list__group').on('keydown', '.task_input', (e) => {
     const element = $(e.target).closest('li');
     const taskInput = element.find('.task_input');
@@ -267,19 +238,13 @@ $(document).ready(() => {
   const cityID = '1668341'
   const url = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&APPID=${APPID}`
 
-  // let weatherData = []
-
-  // fetch(url)
-  //   .then(res => res.json())
-  //   .then(data => (weatherData = data))
-
   //串天氣api
   const request = new XMLHttpRequest()
   request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
       const weatherData = JSON.parse(request.responseText)
       console.log(weatherData)
-      const info = document.querySelector('.info')
+      const weather = document.querySelector('.weather')
 
 
       function sunTime(x) {
@@ -329,24 +294,40 @@ $(document).ready(() => {
       }
 
 
-      info.innerHTML = `
-              <img src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png"/>
-              <div class="location">${weatherData.name}</div>
-              <div id="current-time" class="mb-1"></div>
-              <div class="desc">天氣概況  
-                    ${situation(weatherData.weather[0].main)} 
+      weather.innerHTML = `
+              <div class="card text-center">
+                <div class="card-header font-weight-bold">
+                   <strong>${weatherData.name}</strong>
+                </div>
+                <div>
+                   <img src="http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png" class="img-fluid">
+                </div>
+                <button
+                    class="btn btn-light btn-block"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseExample"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                >
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+                <div
+                    class="collapse"
+                    id="collapseExample"
+                >
+                  <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${situation(weatherData.weather[0].main)} </li>
+                        <li class="list-group-item">${Math.round((weatherData.main.temp - 273.15))}&deg;C</li>
+                        <li class="list-group-item">${Math.round((weatherData.main.feels_like - 273.15))}&deg;C (體感溫度)</li>
+                        <li class="list-group-item">${sunTime(weatherData.sys.sunrise)} (日出時間)</li>
+                        <li class="list-group-item">${sunTime(weatherData.sys.sunset)} (日落時間)</li>
+                    </ul>
+                </div>
               </div>
-              <div class="temp">溫度 ${Math.round((weatherData.main.temp - 273.15))}&deg;C</div>
-              <div class="feellike">體感溫度 ${Math.round((weatherData.main.feels_like - 273.15))}&deg;C</div>
-              <div class="sunrise">日出時間 ${sunTime(weatherData.sys.sunrise)}</div>
-              <div class="sunrise">日落時間 ${sunTime(weatherData.sys.sunset)}</div>
-    `
+              `
     }
   }
-
-  //測試天氣...
-  // <div class="desc">天氣概況 ${situation('sun')}</div>
-
   request.open('GET', url, true)
   request.send()
 })()
